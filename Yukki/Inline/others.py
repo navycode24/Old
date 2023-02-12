@@ -16,8 +16,8 @@ def others_markup(videoid, user_id):
             InlineKeyboardButton(text="▢", callback_data=f"stopcb"),
         ],
         [
-                InlineKeyboardButton(text="ʏᴏᴜʀ ᴘʟᴀʏʟɪsᴛ" callback_data=f'playlist {videoid}|{user_id}'),
-                InlineKeyboardButton(text="ɢʀᴏᴜᴘ ᴘʟᴀʏʟɪsᴛ",callback_data=f'group_playlist {videoid}|{user_id}')
+                InlineKeyboardButton(text="ʏᴏᴜʀ ᴘʟᴀʏʟɪsᴛ" callback_data=f"playlist {videoid}|{user_id}""),
+                InlineKeyboardButton(text="ɢʀᴏᴜᴘ ᴘʟᴀʏʟɪsᴛ",callback_data=f"group_playlist {videoid}|{user_id}"")
         ],
         [
             InlineKeyboardButton(
