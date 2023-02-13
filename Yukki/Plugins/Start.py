@@ -12,6 +12,7 @@ from Yukki.Database import *
 from Yukki.Decorators.admins import ActualAdminCB
 from Yukki.Decorators.permission import PermissionCheck
 from Yukki.Inline import *
+from pyrogram import Client, filters
 from Yukki.Utilities.ping import get_readable_time
 
 def start_pannel():
@@ -79,7 +80,7 @@ async def welcome(_, message: Message):
         except BaseException:
             return
 
-@app.on_message(
+@Client.on_message(
     filters.group
     & filters.command(
         ["mstart", "mhelp", f"mstart@{BOT_USERNAME}", f"mhelp@{BOT_USERNAME}"]
