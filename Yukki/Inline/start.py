@@ -26,95 +26,38 @@ def setting_markup():
     return f"**{BOT_NAME} Settings**", buttons
 
 
-def start_pannel():
-    if not SUPPORT_CHANNEL and not SUPPORT_GROUP:
-        buttons = [
-            [
-                InlineKeyboardButton(
-                    text="sᴇᴛᴛɪɴɢs", callback_data="settingm"
-                )
-            ],
-        ]
-        return f"**This is {BOT_NAME}**", buttons
-    if not SUPPORT_CHANNEL and SUPPORT_GROUP:
-        buttons = [
-            [
-                InlineKeyboardButton(
-                    text="sᴇᴛᴛɪɴɢs", callback_data="settingm"
-                )
-            ],
-            [
-                InlineKeyboardButton(
-                    text="sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_SUPPORT_GROUP}"
-                ),
-            ],
-        ]
-        return f"**This is {BOT_NAME}*", buttons
-    if SUPPORT_CHANNEL and not SUPPORT_GROUP:
-        buttons = [
-            [
-                InlineKeyboardButton(
-                    text="sᴇᴛᴛɪɴɢs", callback_data="settingm"
-                )
-            ],
-            [
-                InlineKeyboardButton(
-                    text=" ᴅᴏɴᴀsɪ ❤️", url=f"https://t.me/Riizzvbss"
-                ),
-            ],
-        ]
-        return f"**This is {BOT_NAME}**", buttons
-    if SUPPORT_CHANNEL and SUPPORT_GROUP:
-        buttons = [
-            [
-                InlineKeyboardButton(
-                    text="sᴇᴛᴛɪɴɢs", callback_data="settingm"
-                )
-            ],
-            [
-                InlineKeyboardButton(
-                    text="ᴅᴏɴᴀsɪ ❤️", url=f"https://t.me/Riizzvbss"
-                ),
-                InlineKeyboardButton(
-                    text="sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_GROUP}"
-                ),
-            ],
-        ]
-        return f"**This is {BOT_NAME}**", buttons
-
-
 def private_panel():
-    if not SUPPORT_CHANNEL and not SUPPORT_GROUP:
+    if not CHANNEL and not GROUP:
         buttons = [
             [
                 InlineKeyboardButton(
                     "➕ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘs",
-                    url=f"https://t.me/{BOT_USERNAME}?startSUPPORT_GROUP=true",
+                    url=f"https://t.me/KynanUserbot?startgroup=true",
                 )
             ],
         ]
         return f"**This is {BOT_NAME}**", buttons
-    if not SUPPORT_CHANNEL and SUPPORT_GROUP:
+    if not CHANNEL and GROUP:
         buttons = [
             [
                 InlineKeyboardButton(
                     "➕ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴏs",
-                    url=f"https://t.me/{BOT_USERNAME}?startSUPPORT_GROUP=true",
+                    url=f"https://t.me/KynanUserbot?startgroup=true",
                 )
             ],
             [
                 InlineKeyboardButton(
-                    text="sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_GROUP}"
+                    text="sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/kynansupport"
                 ),
             ],
         ]
         return f"**This is {BOT_NAME}*", buttons
-    if SUPPORT_CHANNEL and not SUPPORT_GROUP:
+    if CHANNEL and not GROUP:
         buttons = [
             [
                 InlineKeyboardButton(
                     "➕ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘs",
-                    url=f"https://t.me/{BOT_USERNAME}?startSUPPORT_GROUP=true",
+                    url=f"https://t.me/KynanUserbot?startgroup=true",
                 )
             ],
             [
@@ -124,12 +67,12 @@ def private_panel():
             ],
         ]
         return f"**This is {BOT_NAME}**", buttons
-    if SUPPORT_CHANNEL and SUPPORT_GROUP:
+    if CHANNEL and GROUP:
         buttons = [
             [
                 InlineKeyboardButton(
                     "➕ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘs",
-                    url=f"https://t.me/{BOT_USERNAME}?startSUPPORT_GROUP=true",
+                    url=f"https://t.me/KynanUserbot?startgroup=true",
                 )
             ],
             [
@@ -137,7 +80,7 @@ def private_panel():
                     text="ᴅᴏɴᴀsɪ ❤️", url=f"https://t.me/Riizzvbss"
                 ),
                 InlineKeyboardButton(
-                    text="sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_GROUP}"
+                    text="sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/kynansupport"
                 ),
             ],
         ]
