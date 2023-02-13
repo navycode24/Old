@@ -79,7 +79,7 @@ async def welcome(_, message: Message):
         except BaseException:
             return
 
-@Client.on_message(
+@app.on_message(
     filters.group
     & filters.command(
         ["mstart", "mhelp", f"mstart@{BOT_USERNAME}", f"mhelp@{BOT_USERNAME}"]
