@@ -190,7 +190,7 @@ async def settings(_, message: Message):
         volume = 100
     else:
         volume = _check["volume"]
-    text, buttons = setting_markup2()
+    text, buttons = setting_markup()
     await asyncio.gather(
         message.delete(),
         message.reply_text(
