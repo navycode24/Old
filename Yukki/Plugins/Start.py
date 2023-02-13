@@ -5,7 +5,7 @@ from pyrogram import filters
 from pyrogram.types import (InlineKeyboardButton,
                             InlineKeyboardMarkup,Message)
 
-from Yukki import BOT_ID, MUSIC_BOT_NAME, OWNER_ID, SUDOERS, app
+from Yukki import ASSIDS, BOT_ID, MUSIC_BOT_NAME, OWNER_ID, SUDOERS, app
 from Yukki import boottime as bot_start_time
 from Yukki.Core.PyTgCalls import Yukki
 from Yukki.Database import (add_nonadmin_chat, add_served_chat,
@@ -19,44 +19,165 @@ from Yukki.Inline import (custommarkup, dashmarkup, setting_markup,
                           setting_markup2, start_pannel, usermarkup, volmarkup)
 from Yukki.Utilities.ping import get_readable_time
 
-welcome_group = 59
+def start_pannel():
+    buttons = [
+        [
+            InlineKeyboardButton(text="sᴜᴘᴘᴏʀᴛ​", url=f"https://t.me/{GROUP}"),
+            InlineKeyboardButton(text="ᴄʜᴀɴɴᴇʟ", url=f"https://t.me/{CHANNEL}"),
+        ],
+        [
+        [
+        InlineKeyboardButton(text="ᴅᴏɴᴀsɪ ❤️", url=f"https://t.me/Riizzvbss"),
+        ],
+    ]
+    return (
+        "**{BOT_NAME} Merupakan salah satu dari bot telegram yang bisa memutar musik di grup**",
+        buttons,
+    )
+
+
+pstart_markup = InlineKeyboardMarkup(
+    [
+        [
+            InlineKeyboardButton(
+                "➕ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ​ ➕", url=f"https://t.me/{BOT_USERNAME}?startgroup=true"),
+        ],
+        [
+            InlineKeyboardButton(text="sᴜᴘᴘᴏʀᴛ​", url=f"https://t.me/{GROUP}"),
+            InlineKeyboardButton(text="ᴄʜᴀɴɴᴇʟ", url=f"https://t.me/{CHANNEL}"),
+        ],
+        [
+        InlineKeyboardButton(text="ᴅᴏɴᴀsɪ ❤️", url=f"https://t.me/Riizzvbss"),
+        ],
+    ]
+)
+
+welcome_group = 2
+
 
 @app.on_message(filters.new_chat_members, group=welcome_group)
 async def welcome(_, message: Message):
     chat_id = message.chat.id
-    if await is_served_chat(chat_id):
-        pass
-    else:
-        await add_served_chat(chat_id)
     for member in message.new_chat_members:
         try:
+            if member.id in OWNER:
+                return await message.reply_text(
+                    f"💡 Pemilik Bot [{member.mention}] baru saja bergabung di grup ini."
+                )
+            if member.id in SUDOERS:
+                return await message.reply_text(
+                    f"💡 Admin Bot [{member.mention}] baru saja bergabung di grup ini."
+                )
+            if member.id == ASSID:
+                await remove_active_chat(chat_id)
             if member.id == BOT_ID:
-                 return await message.reply_text(
+                out = start_pannel()
+                await message.reply_text(
                     f"""
 👋 ** Halo senang rasanya bisa bergabung di grup ini**
 
 💡 **Jangan lupa untuk menjadikan saya sebagai admin di grup ini**
 """,
-                    reply_markup=InlineKeyboardMarkup(
-            [
-                InlineKeyboardButton("ᴅᴏɴᴀsɪ ❤️", url=f"https://t.me/Riizzvbss"),
-            ])
+                    reply_markup=InlineKeyboardMarkup(out[1]),
+                    disable_web_page_preview=True
+                )
+                return
+        except BaseException:
+            return
+
+@Client.on_message(
+    filters.group
+    & filters.command(
+        ["mstart", "mhelp", f"mstart@{BOT_USERNAME}", f"mhelp@{BOT_USERNAME}"]
+    )
+)
+async def start(_, message: Message):
+    chat_id = message.chat.id
+    out = start_pannel()
+    await message.reply_text(
+        f"""
+Terima kasih telah memasukkan saya di {message.chat.title}.
+
+Untuk bantuan silahkan klik tombol dibawah.
+""",
+        reply_markup=InlineKeyboardMarkup(out[1]),
+        disable_web_page_preview=True
+    )
+    return
+
+
+@Client.on_message(filters.private & filters.incoming & filters.command("mstart"))
+async def play(_, message: Message):
+    if len(message.command) == 1:
+        user_id = message.from_user.id
+        user_name = message.from_user.first_name
+        rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
+        await app.send_message(
+            message.chat.id,
+            text=f"""
+**✨ Selamat Datang {rpk}!
+
+💬 [{BOT_NAME}](https://t.me{BOT_USERNAME}) memungkinkan anda untuk memutar musik pada grup melalui obrolan suara yang baru di Telegram!**
+
+""",
+            parse_mode="markdown",
+            reply_markup=pstart_markup,
+            reply_to_message_id=message.message_id,
+        )
+    elif len(message.command) == 2:
+        query = message.text.split(None, 1)[1]
+        f1 = query[0]
+        f2 = query[1]
+        f3 = query[2]
+        finxx = f"{f1}{f2}{f3}"
+        if str(finxx) == "inf":
+            query = (str(query)).replace("info_", "", 1)
+            query = f"https://www.youtube.com/watch?v={query}"
+            with yt_dlp.YoutubeDL(ytdl_opts) as ytdl:
+                x = ytdl.extract_info(query, download=False)
+            thumbnail = x["thumbnail"]
+            searched_text = f"""
+🔍 **Video Track Information**
+
+❇️**Judul:** {x["title"]}
+
+⏳ **Durasi:** {round(x["duration"] / 60)} Mins
+👀 **Ditonton:** `{x["view_count"]}`
+👍 **Suka:** `{x["like_count"]}`
+👎 **Tidak suka:** `{x["dislike_count"]}`
+⭐️ **Peringkat Rata-rata:** {x["average_rating"]}
+🎥 **Nama channel:** {x["uploader"]}
+📎 **Channel Link:** [Kunjungi Dari Sini]({x["channel_url"]})
+🔗 **Link:** [Link]({x["webpage_url"]})
+"""
+            link = x["webpage_url"]
+            buttons = personal_markup(link)
+            userid = message.from_user.id
+            thumb = await down_thumb(thumbnail, userid)
+            await app.send_photo(
+                message.chat.id,
+                photo=thumb,
+                caption=searched_text,
+                parse_mode="markdown",
+                reply_markup=InlineKeyboardMarkup(buttons),
             )
-            if member.id in OWNER_ID:
-                return await message.reply_text(
-                    f"{MUSIC_BOT_NAME}'s Pemilik{member.mention} baru saja bergabung dengan obrolan Anda."
-                )
-            if member.id in SUDOERS:
-                return await message.reply_text(
-                    f"Anggota dari {MUSIC_BOT_NAME}Pengguna Sudo {member.mention} baru saja bergabung dengan obrolan Anda."
-                )
-            return
-        except:
-            return
+        if str(finxx) == "sud":
+            sudoers = await get_sudoers()
+            text = "**📝 DAFTAR PENGGUNA SUDO**\n\n"
+            for count, user_id in enumerate(sudoers, 1):
+                try:
+                    user = await app.get_users(user_id)
+                    user = user.first_name if not user.mention else user.mention
+                except Exception:
+                    continue
+                text += f"- {user}\n"
+            if not text:
+                await message.reply_text("Tidak Ada Pengguna Sudo")
+            else:
+                await message.reply_text(text)
 
 
-
-@app.on_message(filters.command("vcsettings") & filters.group)
+@app.on_message(filters.command("msettings") & filters.group)
 @PermissionCheck
 async def settings(_, message: Message):
     c_id = message.chat.id
