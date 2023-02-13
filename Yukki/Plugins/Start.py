@@ -5,18 +5,13 @@ from pyrogram import filters
 from pyrogram.types import (InlineKeyboardButton,
                             InlineKeyboardMarkup,Message)
 
-from Yukki import ASSIDS, BOT_ID, MUSIC_BOT_NAME, OWNER_ID, SUDOERS, app
-from Yukki import boottime as bot_start_time
+from Yukki import *
+from Yukki import *
 from Yukki.Core.PyTgCalls import Yukki
-from Yukki.Database import (add_nonadmin_chat, add_served_chat,
-                            get_authuser,
-                            get_authuser_names, get_start, is_nonadmin_chat,
-                            is_served_chat,
-                            remove_nonadmin_chat, save_start)
+from Yukki.Database import *
 from Yukki.Decorators.admins import ActualAdminCB
 from Yukki.Decorators.permission import PermissionCheck
-from Yukki.Inline import (custommarkup, dashmarkup, setting_markup,
-                          setting_markup2, start_pannel, usermarkup, volmarkup)
+from Yukki.Inline import *
 from Yukki.Utilities.ping import get_readable_time
 
 def start_pannel():
@@ -205,7 +200,7 @@ async def okaybhai(_, CallbackQuery):
     await CallbackQuery.answer("Going Back ...")
     out = start_pannel()
     await CallbackQuery.edit_message_text(
-        text=f"Thanks for having me in {CallbackQuery.message.chat.title}.\n{MUSIC_BOT_NAME}is alive.\n\nFor any assistance or help, checkout our support group and channel.",
+        text=f"Terimakasih telah menambahkan saya di {CallbackQuery.message.chat.title}.\n{BOT_NAME} Telah online.\n\nJika butuh bantuan atau terjadi masalah dengan Bot silahkan bergabung di group atau channel kami.",
         reply_markup=InlineKeyboardMarkup(out[1]),
     )
 
