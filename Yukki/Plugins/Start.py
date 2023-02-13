@@ -21,7 +21,6 @@ def start_pannel():
             InlineKeyboardButton(text="ᴄʜᴀɴɴᴇʟ", url=f"https://t.me/{CHANNEL}"),
         ],
         [
-        [
         InlineKeyboardButton(text="ᴅᴏɴᴀsɪ ❤️", url=f"https://t.me/Riizzvbss"),
         ],
     ]
