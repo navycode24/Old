@@ -80,7 +80,7 @@ async def welcome(_, message: Message):
         except BaseException:
             return
 
-@Client.on_message(
+@app.on_message(
     filters.group
     & filters.command(
         ["mstart", "mhelp", f"mstart@{BOT_USERNAME}", f"mhelp@{BOT_USERNAME}"]
@@ -101,7 +101,7 @@ Untuk bantuan silahkan klik tombol dibawah.
     return
 
 
-@Client.on_message(filters.private & filters.incoming & filters.command("mstart"))
+@app.on_message(filters.private & filters.incoming & filters.command("mstart"))
 async def play(_, message: Message):
     if len(message.command) == 1:
         user_id = message.from_user.id
