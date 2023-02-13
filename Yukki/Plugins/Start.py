@@ -18,11 +18,12 @@ from Yukki.Utilities.ping import get_readable_time
 def start_pannel():
     buttons = [
         [
-            InlineKeyboardButton(text="sᴜᴘᴘᴏʀᴛ​", url=f"https://t.me/{SUPPORT_GROUP}"),
-            InlineKeyboardButton(text="ᴄʜᴀɴɴᴇʟ", url=f"https://t.me/{SUPPORT_CHANNEL}"),
+            InlineKeyboardButton(text="sᴜᴘᴘᴏʀᴛ​", url=f"https://t.me/kynansupport"),
+            InlineKeyboardButton(text="ᴄʜᴀɴɴᴇʟ", url=f"https://t.me/kontenfilm"),
         ],
         [
-        InlineKeyboardButton(text="ᴅᴏɴᴀsɪ ❤️", url=f"https://t.me/Riizzvbss"),
+            InlineKeyboardButton("ᴘᴇʀɪɴᴛᴀʜ​", url="https://telegra.ph/ҡʏɴλɴ-02-13"),
+            InlineKeyboardButton(text="ᴅᴏɴᴀsɪ ❤️", url=f"https://t.me/Riizzvbss"),
         ],
     ]
     return (
@@ -35,14 +36,15 @@ pstart_markup = InlineKeyboardMarkup(
     [
         [
             InlineKeyboardButton(
-                "➕ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ​ ➕", url=f"https://t.me/{BOT_USERNAME}?startgroup=true"),
+                "➕ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ​ ➕", url=f"https://t.me/KynanUserbot?startgroup=true"),
         ],
         [
-            InlineKeyboardButton(text="sᴜᴘᴘᴏʀᴛ​", url=f"https://t.me/{SUPPORT_GROUP}"),
-            InlineKeyboardButton(text="ᴄʜᴀɴɴᴇʟ", url=f"https://t.me/{SUPPORT_CHANNEL}"),
+            InlineKeyboardButton(text="sᴜᴘᴘᴏʀᴛ​", url=f"https://t.me/kynansupport"),
+            InlineKeyboardButton(text="ᴄʜᴀɴɴᴇʟ", url=f"https://t.me/kontenfilm"),
         ],
         [
-        InlineKeyboardButton(text="ᴅᴏɴᴀsɪ ❤️", url=f"https://t.me/Riizzvbss"),
+            InlineKeyboardButton("ᴘᴇʀɪɴᴛᴀʜ​", url="https://telegra.ph/ҡʏɴλɴ-02-13"),
+            InlineKeyboardButton(text="ᴅᴏɴᴀsɪ ❤️", url=f"https://t.me/Riizzvbss"),
         ],
     ]
 )
@@ -80,10 +82,8 @@ async def welcome(_, message: Message):
         except BaseException:
             return
 
-@app.on_message(
-    filters.group
-    & filters.command(
-        ["mstart", "mhelp", f"mstart@{BOT_USERNAME}", f"mhelp@{BOT_USERNAME}"]
+@app.on_message(filters.command(
+        ["mhelp", f"mhelp@{BOT_USERNAME}", f"mhelp@{BOT_USERNAME}"]
     )
 )
 async def start(_, message: Message):
@@ -101,7 +101,7 @@ Untuk bantuan silahkan klik tombol dibawah.
     return
 
 
-@app.on_message(filters.private & filters.incoming & filters.command("mstart"))
+@app.on_message(filters.command("mstart"))
 async def play(_, message: Message):
     if len(message.command) == 1:
         user_id = message.from_user.id
