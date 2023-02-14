@@ -9,7 +9,7 @@ CAPTION_TEXT = """
 ࿂ **Title:** `{}`
 ࿂ **Requester** : {}
 ࿂ **Downloaded Via** : `{}`
-࿂ **Downloaded By :** @szrosebot
+࿂ **Downloaded By :** @KynanUserbot
 """
 
 CAPTION_BTN = InlineKeyboardMarkup(
