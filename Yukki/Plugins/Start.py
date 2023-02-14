@@ -101,7 +101,7 @@ Untuk bantuan silahkan klik tombol dibawah.
     return
 
 
-@app.on_message(filters.command("mstart"))
+@app.on_message(filters.command("start"))
 async def play(_, message: Message):
     if len(message.command) == 1:
         user_id = message.from_user.id
@@ -116,7 +116,6 @@ async def play(_, message: Message):
 
 """,
             parse_mode="markdown",
-            reply_markup=pstart_markup,
             reply_to_message_id=message.message_id,
         )
     elif len(message.command) == 2:
