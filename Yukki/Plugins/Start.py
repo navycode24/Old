@@ -109,6 +109,7 @@ async def play(_, message: Message):
         rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
         await app.send_message(
             message.chat.id,
+            text=""
             parse_mode="markdown",
             reply_to_message_id=message.message_id,
         )
