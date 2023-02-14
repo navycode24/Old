@@ -109,12 +109,6 @@ async def play(_, message: Message):
         rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
         await app.send_message(
             message.chat.id,
-            text=f"""
-**✨ Selamat Datang {rpk}!
-
-💬 [{BOT_NAME}](https://t.me{BOT_USERNAME}) memungkinkan anda untuk memutar musik pada grup melalui obrolan suara yang baru di Telegram!**
-
-""",
             parse_mode="markdown",
             reply_to_message_id=message.message_id,
         )
