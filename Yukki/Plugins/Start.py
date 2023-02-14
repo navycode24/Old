@@ -1,6 +1,7 @@
 import asyncio
 import time
 import psutil
+import yt_dlp
 from pyrogram import filters
 from pyrogram.types import (InlineKeyboardButton,
                             InlineKeyboardMarkup,Message)
@@ -107,12 +108,6 @@ async def play(_, message: Message):
         user_id = message.from_user.id
         user_name = message.from_user.first_name
         rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
-        await app.send_message(
-            message.chat.id,
-            text="",
-            parse_mode="markdown",
-            reply_to_message_id=message.message_id,
-        )
     elif len(message.command) == 2:
         query = message.text.split(None, 1)[1]
         f1 = query[0]
@@ -128,16 +123,16 @@ async def play(_, message: Message):
             searched_text = f"""
 🔍 **Video Track Information**
 
-❇️**Judul:** {x["title"]}
+📌 **Judul:** {x["title"]}
 
-⏳ **Durasi:** {round(x["duration"] / 60)} Mins
+⏱️ **Durasi:** {round(x["duration"] / 60)} Mins
 👀 **Ditonton:** `{x["view_count"]}`
 👍 **Suka:** `{x["like_count"]}`
 👎 **Tidak suka:** `{x["dislike_count"]}`
 ⭐️ **Peringkat Rata-rata:** {x["average_rating"]}
-🎥 **Nama channel:** {x["uploader"]}
+💌  **Nama channel:** {x["uploader"]}
 📎 **Channel Link:** [Kunjungi Dari Sini]({x["channel_url"]})
-🔗 **Link:** [Link]({x["webpage_url"]})
+🖇️ **Link:** [Link]({x["webpage_url"]})
 """
             link = x["webpage_url"]
             buttons = personal_markup(link)
