@@ -85,7 +85,7 @@ async def start_stream_video(message, file, title, mystic):
 📌 **Name:** [Given Video Via Telegram]({link})
 ⏱️ **Duration:** `{duration}`
 📀 **Status:** `Playing Video`
-👥** Request by:**{user}
+👥 **Request by:**{user}
 """
         final_output = await message.reply_photo(
             photo="Utils/Telegram.JPEG",
@@ -133,7 +133,7 @@ async def start_live_stream(
 **Live Streaming**
 📌 **Name:** [{title[:25]}](https://www.youtube.com/watch?v={videoid}) 
 📀 **Status:** `Playing Video`
-👥** Request by:**{CallbackQuery.from_user.mention}
+👥 **Request by:**{CallbackQuery.from_user.mention}
 📑 **Info**: [Get Information](https://t.me/{BOT_USERNAME}?start=info_{videoid})
 """
     final_output = await CallbackQuery.message.reply_photo(
@@ -226,7 +226,7 @@ async def start_video_stream(
 📌 **Name:** [{title[:25]}](https://www.youtube.com/watch?v={videoid}) 
 ⏱️ **Duration:** `{duration}`
 📑 **Status:** `Playing Video`
-👥** Request by:**{user}
+👥 **Request by:**{user}
 📑 **Info**: [Get Information](https://t.me/{BOT_USERNAME}?start=info_{videoid})
 """     
         final_output = await CallbackQuery.message.reply_photo(
