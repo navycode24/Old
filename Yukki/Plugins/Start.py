@@ -124,16 +124,10 @@ async def play(_, message: Message):
 🔍 **Video Track Information**
 
 📌 **Judul:** {x["title"]}
-
 ⏱️ **Durasi:** {round(x["duration"] / 60)} Mins
 👀 **Ditonton:** `{x["view_count"]}`
-👍 **Suka:** `{x["like_count"]}`
-👎 **Tidak suka:** `{x["dislike_count"]}`
-⭐️ **Peringkat Rata-rata:** {x["average_rating"]}
-💌  **Nama channel:** {x["uploader"]}
-📎 **Channel Link:** [Kunjungi Dari Sini]({x["channel_url"]})
-🖇️ **Link:** [Link]({x["webpage_url"]})
-"""
+💌 **Channel:** {x["uploader"]}
+🤖 **Developer** : [˹ҡʏɴλɴ ꝛσʙσᴛ˼༗](https://t.me/KynanUserbot)"""
             link = x["webpage_url"]
             buttons = personal_markup(link)
             userid = message.from_user.id
