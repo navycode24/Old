@@ -8,7 +8,7 @@ from pyrogram.types import (InlineKeyboardButton,
 
 from Yukki import *
 from Yukki.Utilities.ytdl import *
-from Yukki.Utilities.thumbnail import *
+from Yukki.Utilities.thumbnails import *
 from Yukki.Core.PyTgCalls import Yukki
 from Yukki.Database import *
 from Yukki.Decorators.admins import ActualAdminCB
