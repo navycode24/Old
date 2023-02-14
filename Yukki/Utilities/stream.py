@@ -62,10 +62,10 @@ async def start_stream(
                 f"""
 🔖 **Track added to queue »** `{position}`
 
-📌<b>Name:</b> [{title[:25]}](https://www.youtube.com/watch?v={videoid}) 
-⏱️<b>Duration:</b> {duration_min} 
-📑<b>Info:</b> [Get Information](https://t.me/{BOT_USERNAME}?start=info_{videoid})
-👥<b>Requested by:</b>{CallbackQuery.from_user.mention} 
+📌 <b>Name:</b> [{title[:25]}](https://www.youtube.com/watch?v={videoid}) 
+⏱️ <b>Duration:</b> {duration_min} 
+📑 <b>Info:</b> [Get Information](https://t.me/{BOT_USERNAME}?start=info_{videoid})
+👥 <b>Requested by:</b>{CallbackQuery.from_user.mention} 
                 """
             ),
             reply_markup=InlineKeyboardMarkup(buttons),
@@ -91,10 +91,10 @@ async def start_stream(
         )
         await mystic.delete()
         cap = f"""
-📌<b>Name:</b>[{title[:25]}](https://www.youtube.com/watch?v={videoid})
-⏱️<b>Duration:</b> `{duration_min}` 
-📑<b>Info:</b> [Get  Information](https://t.me/{BOT_USERNAME}?start=info_{videoid})
-👥**Requested by:** {CallbackQuery.from_user.mention}
+📌 <b>Name:</b>[{title[:25]}](https://www.youtube.com/watch?v={videoid})
+⏱️ <b>Duration:</b> `{duration_min}` 
+📑 <b>Info:</b> [Get  Information](https://t.me/{BOT_USERNAME}?start=info_{videoid})
+👥 **Requested by:** {CallbackQuery.from_user.mention}
         """
         final_output = await CallbackQuery.message.reply_photo(
             photo=thumb,
@@ -148,9 +148,9 @@ async def start_stream_audio(
 🔖 **Track added to queue »** `{position}`
 
 📌 b>Name:</b> [{title[:25]}](https://www.youtube.com/watch?v={videoid}) 
-⏱️<b>Duration:</b> `{duration_min} `
-📑<b>Info:</b> [Get Information](https://t.me/{BOT_USERNAME}?start=info_{videoid})
-👥<b>Requested by:</b>{message.from_user.mention}        
+⏱️ <b>Duration:</b> `{duration_min} `
+📑 <b>Info:</b> [Get Information](https://t.me/{BOT_USERNAME}?start=info_{videoid})
+👥 <b>Requested by:</b>{message.from_user.mention}        
                 """
             ),
             reply_markup=audio_markup2,
@@ -177,9 +177,9 @@ async def start_stream_audio(
         await mystic.delete()
         cap = f"""
 📌 b>Name:</b> [Given Audio Via Telegram]({link})
-⏱️<b>Duration:</b> `{duration_min} `
-📑<b>Info:</b> [Get Information](https://t.me/{BOT_USERNAME}?start=info_{videoid})
-👥<b>Requested by:</b>{message.from_user.mention}   
+⏱️ <b>Duration:</b> `{duration_min} `
+📑 <b>Info:</b> [Get Information](https://t.me/{BOT_USERNAME}?start=info_{videoid})
+👥 <b>Requested by:</b>{message.from_user.mention}   
         """
         final_output = await message.reply_photo(
             photo="Utils/Telegram.JPEG",
