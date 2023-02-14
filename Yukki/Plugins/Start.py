@@ -131,7 +131,7 @@ async def play(_, message: Message):
             link = x["webpage_url"]
             buttons = personal_markup(link)
             userid = message.from_user.id
-            thumb = await down_thumb(thumbnail, userid)
+            thumb = await gen_thumb(thumbnail, userid)
             await app.send_photo(
                 message.chat.id,
                 photo=thumb,
