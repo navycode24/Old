@@ -24,6 +24,14 @@ def setting_markup():
         ],
     ]
     return f"**{BOT_NAME} Settings**", buttons
+    
+
+def personal_markup(link):
+    buttons = [
+        [InlineKeyboardButton(text="ᴛᴏɴᴛᴏɴ ᴅɪ ʏᴏᴜᴛᴜʙᴇ", url=f"{link}")],
+        [InlineKeyboardButton(text="ᴛᴜᴛᴜᴘ", callback_data=f"close2")],
+    ]
+    return buttons
 
 
 def private_panel():
