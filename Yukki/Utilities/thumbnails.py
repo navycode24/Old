@@ -94,3 +94,14 @@ async def gen_thumb(thumbnail, title, userid, status, views, duration, channel):
     os.remove(f"cache/thumb{userid}.jpg")
     final = f"cache/final{userid}.png"
     return final
+
+
+async def down_thumb(thumbnail, userid):
+    async with aiohttp.ClientSession() as session:
+        async with session.get(thumbnail) as resp:
+            if resp.status == 200:
+                f = await aiofiles.open(f"search/thumb{userid}.png", mode="wb")
+                await f.write(await resp.read())
+                await f.close()
+    final = f"search/thumb{userid}.png"
+    return final
