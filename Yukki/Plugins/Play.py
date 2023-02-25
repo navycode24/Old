@@ -270,9 +270,25 @@ async def Music_Stream(_, CallbackQuery):
     mystic = await CallbackQuery.message.reply_text(
         f"**{MUSIC_BOT_NAME} Downloader**\n\n**Title:** {title[:50]}\n\n0% ▓▓▓▓▓▓▓▓▓▓▓▓ 100%"
     )
-    downloaded_file = await loop.run_in_executor(
-        None, download, videoid, mystic, title
-    )
+    def download_bokep():
+        ydl_optssx = {
+            "format": "bestaudio/best",
+            "outtmpl": "downloads/%(id)s.%(ext)s",
+            "geo_bypass": True,
+            "nocheckcertificate": True,
+            "quiet": True,
+            "no_warnings": True,
+        }
+        x = yt_dlp.YoutubeDL(ydl_optssx)
+        info = x.extract_info(url, False)
+        xyz = os.path.join("downloads", f"{info['id']}.{info['ext']}")
+        if os.path.exists(xyz):
+            return xyz
+        x.download([url])
+        return xyz
+
+    loop = asyncio.get_event_loop()
+    downloaded_file = await loop.run_in_executor(None, download_bokep)
     raw_path = await convert(downloaded_file)
     theme = await check_theme(chat_id)
     chat_title = await specialfont_to_normal(chat_title)
