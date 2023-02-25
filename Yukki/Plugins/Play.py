@@ -333,6 +333,7 @@ async def Music_Stream(_, CallbackQuery):
     mystic = await CallbackQuery.message.reply_text(
         f"**{MUSIC_BOT_NAME} Downloader**\n\n**Title:** {title[:50]}\n\n0% ▓▓▓▓▓▓▓▓▓▓▓▓ 100%"
     )
+    url = get_url(message)
     def download_bokep():
         ydl_optssx = {
             "format": "bestaudio/best",
