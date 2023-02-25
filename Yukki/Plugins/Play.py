@@ -318,14 +318,9 @@ async def Music_Stream(_, CallbackQuery):
             "This is not for you! Search You Own Song.", show_alert=True
         )
     await CallbackQuery.message.delete()
-    (
-        title,
-        duration_min,
-        duration_sec,
-        thumbnail,
-        views,
-        channel
-    ) = get_yt_info_id(videoid)
+    try:
+        with yt_dlp.YoutubeDL(ytdl_opts) as ytdl:
+            x = ytdl.extract_info(url, download=False)
     if duration_sec > DURATION_LIMIT:
         return await CallbackQuery.message.reply_text(
             f"**Duration Limit Exceeded**\n\n**Allowed Duration: **{DURATION_LIMIT_MIN} minute(s)\n**Received Duration:** {duration_min} minute(s)"
@@ -335,6 +330,7 @@ async def Music_Stream(_, CallbackQuery):
         f"**{MUSIC_BOT_NAME} Downloader**\n\n**Title:** {title[:50]}\n\n0% ▓▓▓▓▓▓▓▓▓▓▓▓ 100%"
     )
     url = f"https://www.youtube.com/watch?v={id}"
+    videoid = id
     def download_bokep():
         ydl_optssx = {
             "format": "bestaudio/best",
