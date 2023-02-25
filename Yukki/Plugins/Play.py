@@ -50,6 +50,62 @@ loop = asyncio.get_event_loop()
 
 UPDATES_CHANNEL = "kontenfilm"
 
+def time_to_seconds(time):
+    stringt = str(time)
+    return sum(int(x) * 60**i for i, x in enumerate(reversed(stringt.split(":"))))
+
+
+def convert_seconds(seconds):
+    seconds = seconds % (24 * 3600)
+    seconds %= 3600
+    minutes = seconds // 60
+    seconds %= 60
+    return "%02d:%02d" % (minutes, seconds)
+
+
+def ytsearch(query):
+    try:
+        search = VideosSearch(query, limit=1).result()
+        data = search["result"][0]
+        songname = data["title"]
+        url = data["link"]
+        duration = data["duration"]
+        thumbnail = f"https://i.ytimg.com/vi/{data['id']}/hqdefault.jpg"
+        return [songname, url, duration, thumbnail]
+    except Exception as e:
+        print(e)
+        return 0
+
+
+async def ytdl(link):
+    proc = await asyncio.create_subprocess_exec(
+        "yt-dlp",
+        "-g",
+        "-f",
+        "best[height<=?720][width<=?1280]",
+        f"{link}",
+        stdout=asyncio.subprocess.PIPE,
+        stderr=asyncio.subprocess.PIPE,
+    )
+    stdout, stderr = await proc.communicate()
+    if stdout:
+        return 1, stdout.decode().split("\n")[0]
+    else:
+        return 0, stderr.decode()
+
+
+def get_text(message: Message) -> Union[None, str]:
+    text_to_return = message.text
+    if message.text is None:
+        return None
+    if " " in text_to_return:
+        try:
+            return message.text.split(None, 1)[1]
+        except IndexError:
+            return None
+    else:
+        return None
+
 @app.on_message(
     filters.command(["play", f"play@{BOT_USERNAME}"]) & filters.group
 )
@@ -293,8 +349,7 @@ async def Music_Stream(_, CallbackQuery):
             return xyz
         x.download([url])
         return xyz
-
-    loop = asyncio.get_event_loop()
+        
     downloaded_file = await loop.run_in_executor(None, download_bokep)
     raw_path = await convert(downloaded_file)
     theme = await check_theme(chat_id)
