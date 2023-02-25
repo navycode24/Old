@@ -18,32 +18,6 @@ def url_markup(videoid, duration, user_id, query, query_type):
         ],
         [
             InlineKeyboardButton(
-                text="ᴍᴇɴᴜ",
-                callback_data=f"Search {query}|{user_id}",
-            ),
-            InlineKeyboardButton(
-                text="ᴄʟᴏsᴇ",
-                callback_data=f"forceclose {query}|{user_id}",
-            ),
-        ],
-    ]
-    return buttons
-
-
-def url_markup(videoid, duration, user_id, query, query_type):
-    buttons = [
-        [
-            InlineKeyboardButton(
-                text="📀 ᴍᴜsɪᴄ",
-                callback_data=f"MusicStream {videoid}|{duration}|{user_id}",
-            ),
-            InlineKeyboardButton(
-                text="📽️ ᴠɪᴅᴇᴏ",
-                callback_data=f"Choose {videoid}|{duration}|{user_id}",
-            ),
-        ],
-        [
-            InlineKeyboardButton(
                 text="ʟᴀɪɴɴʏᴀ",
                 callback_data=f"Search {query}|{user_id}",
             )
