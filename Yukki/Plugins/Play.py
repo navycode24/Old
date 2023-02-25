@@ -1,4 +1,11 @@
 import requests
+import os
+
+import random
+
+import asyncio
+import yt_dlp
+import shutil
 from Yukki.Utilities.spotify import get_spotify_url, getsp_album_info, getsp_artist_info, getsp_playlist_info, getsp_track_info
 from Yukki.Plugins.custom.func import mplay_stream
 from Yukki.Utilities.resso import get_resso_album, get_resso_artist, get_resso_playlist, get_resso_track, get_resso_url
