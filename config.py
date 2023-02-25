@@ -69,3 +69,8 @@ if str(getenv("PM_PERMIT")).strip().upper() == "TRUE":
     PM_PERMIT = "FALSE"
 else:
     PM_PERMIT = "TRUE"
+    
+YOUTUBE_IMG_URL = getenv(
+    "YOUTUBE_IMG_URL",
+    "cache/audio.png",
+)
