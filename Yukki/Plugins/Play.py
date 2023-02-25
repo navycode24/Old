@@ -45,6 +45,7 @@ from Yukki.Utilities.youtube import (get_yt_info_id, get_yt_info_query,
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 from pyrogram.errors import UserNotParticipant
+from typing import Union
 
 loop = asyncio.get_event_loop()
 
